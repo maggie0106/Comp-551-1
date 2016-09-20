@@ -49,6 +49,8 @@ for runner in your_list:
 #selecting regression features
 #year,marathon,Montreal_event,gender,age,Finish_time =new_dict[0]
 classification_features=[]
+header=['ID','Num of marathon','Unfinished_marathon','Age', 'Num of mtl marathon', '2012 mtl Marathon','2013 mtl Marathon','2014 mtl Marathon','2015 mtl Marathon']
+classification_features.append(header)
 List_new_dict=sorted(new_dict.iteritems())
 for id, runner_results in List_new_dict:
     year,marathon,Montreal_event,gender,age,Finish_time =map(list,zip(*runner_results))
@@ -85,12 +87,13 @@ for id, runner_results in List_new_dict:
         if k[0]==2015 and k[1]==True and k[2]==True:
             mtl_maraton_2015=mtl_maraton_2015+1
             mtl_marathon=mtl_marathon+1            
-    classification_features.append([count_marathon,unfinished_marathon,age[0],mtl_marathon,mtl_maraton_2012,mtl_maraton_2013,mtl_maraton_2014,mtl_maraton_2015]) 
-    
-    
+    classification_features.append([id,count_marathon,unfinished_marathon,age[0],mtl_marathon,mtl_maraton_2012,mtl_maraton_2013,mtl_maraton_2014,mtl_maraton_2015]) 
+#data structure for classification_features is [# of marathon,unfinished_marathon,age,# of total mtl marathon,2012] 
         
-            
-    
+# Write data to file
+with open('classification_features.csv', 'wb') as f:
+    writer = csv.writer(f)
+    writer.writerows(classification_features)
             
     
             
