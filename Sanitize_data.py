@@ -12,7 +12,7 @@ with open('Project1_data.csv', 'rb') as f:
 #
 your_list.pop(0)
 
-new_dict = {}
+new_dict = {} #sanitize data dictionary
 montreal = re.compile('montr.al', re.IGNORECASE)
 for runner in your_list:
     runner_id = int(runner[0])
@@ -22,7 +22,7 @@ for runner in your_list:
         #whether it is in Montreal or not
         #whether it is a full Morothon
         Montreal_event = montreal.search(Events) != None
-        marathon = (type == 'Marathon')
+        marathon = (Type == 'Marathon')
         #age and gender
         
         if len(gender_age)>2:
@@ -45,4 +45,43 @@ for runner in your_list:
     
         everyevent[:] = [year,marathon,Montreal_event,gender,age,Finish_time]
 #       everyevent[:] = [marathon,Montreal_event]
- 
+
+#selecting regression features
+#year,marathon,Montreal_event,gender,age,Finish_time =new_dict[0]
+classification_features=[]
+List_new_dict=sorted(new_dict.iteritems())
+for id, runner_results in List_new_dict:
+    year,marathon,Montreal_event,gender,age,Finish_time =map(list,zip(*runner_results))
+    #count how many time they took Marathon
+    count_marathon=0
+    unfinished_marathon=0
+    mtl_maraton_2012=0
+    mtl_maraton_2013=0
+    mtl_maraton_2014=0
+    mtl_maraton_2015=0
+    mtl_marathon=0
+    tm_mara_loc = zip(year, marathon, Montreal_event)
+    for i in marathon:
+        if i==True: 
+            count_marathon=count_marathon+1
+    #count unfinished times
+    for j in Finish_time:
+        if j==-1:
+            unfinished_marathon=unfinished_marathon+1
+    
+    for k in tm_mara_loc:
+        if k[1]==True and k[2]==True:
+            mtl_marathon=mtl_marathon+1
+            
+            
+    classification_features.append([count_marathon,unfinished_marathon,age[0],mtl_marathon]) 
+    
+    
+        
+            
+    
+            
+    
+            
+    
+    
