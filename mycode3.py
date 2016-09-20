@@ -20,6 +20,17 @@ for i in range(len(data)-1):
         gender.append(0) # 0 shows the participant is female.
     else :
         gender.append(-1) #Unknown gender
+        
+        
+# The mapping for age is as follows:
+# features can be 1, 2, 2A, 2B, 3, 3A, 3B, 4, 4A, 4B, 5, 5A, 5B, 6 as follows: 
+# 1 --> < 20 
+# 2 --> 20 <= age <= 29    2A -- > 20 <= age <= 24 and 2B --> 25 <= age <= 29
+# 3 --> 30 <= age <= 39    3A -- > 30 <= age <= 34 and 3B --> 35 <= age <= 39
+# 4 --> 40 <= age <= 49    4A -- > 40 <= age <= 44 and 4B --> 45 <= age <= 49
+# 5 --> 50 <= age <= 59    2A -- > 50 <= age <= 54 and 2B --> 55 <= age <= 59
+# 6 --> 60 <= age <= 69    
+
 # Extracting age feature
 age = []
 for j in range((len(data[1])-1)/5):
