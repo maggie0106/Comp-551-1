@@ -59,7 +59,7 @@ for id, runner_results in List_new_dict:
     mtl_maraton_2013=0
     mtl_maraton_2014=0
     mtl_maraton_2015=0
-    mtl_marathon=0
+    mtl_marathon=0 #how many time he participated in mtl marathon
     tm_mara_loc = zip(year, marathon, Montreal_event)
     for i in marathon:
         if i==True: 
@@ -70,11 +70,22 @@ for id, runner_results in List_new_dict:
             unfinished_marathon=unfinished_marathon+1
     
     for k in tm_mara_loc:
-        if k[1]==True and k[2]==True:
+        if k[0]==2012 and k[1]==True and k[2]==True:
+            mtl_maraton_2012=mtl_maraton_2012+1
             mtl_marathon=mtl_marathon+1
             
+        if k[0]==2013 and k[1]==True and k[2]==True:
+            mtl_maraton_2013=mtl_maraton_2013+1
+            mtl_marathon=mtl_marathon+1
+ 
+        if k[0]==2014 and k[1]==True and k[2]==True:
+            mtl_maraton_2014=mtl_maraton_2014+1
+            mtl_marathon=mtl_marathon+1
             
-    classification_features.append([count_marathon,unfinished_marathon,age[0],mtl_marathon]) 
+        if k[0]==2015 and k[1]==True and k[2]==True:
+            mtl_maraton_2015=mtl_maraton_2015+1
+            mtl_marathon=mtl_marathon+1            
+    classification_features.append([count_marathon,unfinished_marathon,age[0],mtl_marathon,mtl_maraton_2012,mtl_maraton_2013,mtl_maraton_2014,mtl_maraton_2015]) 
     
     
         
