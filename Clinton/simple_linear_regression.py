@@ -12,9 +12,9 @@ def training_error(w_hat):
     tr_error =[0.00]
     for i in range(x.shape[0])  :
         tr_error += np.power((y[i] - np.dot(w_hat.T,x[i])), 2)
-    return tr_error
+    return tr_error/x.shape[0]
     
-df = pd.read_csv(r'Book2.csv', header=None)
+df = pd.read_csv(r'Book3.csv', header=None)
 df_num = df.values
 
 # x feature matrix and its transpose, y training outputs
